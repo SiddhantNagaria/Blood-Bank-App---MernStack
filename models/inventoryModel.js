@@ -39,4 +39,4 @@ const inventorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.Model("Inventory", inventorySchema);
+module.exports = mongoose.model("Inventory", inventorySchema);
