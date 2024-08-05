@@ -1,90 +1,79 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import API from "../../../services/API";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Spinner from "../components/shared/Spinner";
+import Layout from "../components/shared/Layout/Layout";
+import Modal from "../components/shared/modal/Modal";
+import API from "../services/API";
+import moment from "moment";
 
-export const userLogin = createAsyncThunk(
-  "auth/login",
-  async ({ role, email, password }, { rejectWithValue }) => {
-    try {
-      const { data } = await API.post("/auth/login", { role, email, password });
-      //store token
-      if (data.success) {
-        alert(data.message);
-        localStorage.setItem("token", data.token);
-        window.location.replace("/");
-      }
-      return data;
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
-    }
-  }
-);
+const HomePage = () => {
+  const { loading, error } = useSelector((state) => state.auth);
+  const [data, setData] = useState([]);
 
-//register
-export const userRegister = createAsyncThunk(
-  "auth/register",
-  async (
-    {
-      name,
-      role,
-      email,
-      password,
-      phone,
-      organisationName,
-      address,
-      hospitalName,
-      website,
-    },
-    { rejectWithValue }
-  ) => {
+  //get function
+  const getBloodRecords = async () => {
     try {
-      const { data } = await API.post("/auth/register", {
-        name,
-        role,
-        email,
-        password,
-        phone,
-        organisationName,
-        address,
-        hospitalName,
-        website,
-      });
+      const { data } = await API.get("/inventory/get-inventory");
       if (data?.success) {
-        alert("User Registerd Successfully");
-        window.location.replace("/login");
-        // toast.success("User Registerd Successfully");
+        setData(data?.inventory);
+        // console.log(data);
       }
     } catch (error) {
       console.log(error);
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
     }
-  }
-);
+  };
 
-//current user
-export const getCurrentUser = createAsyncThunk(
-  "auth/getCurrentUser",
-  async ({ rejectWithValue }) => {
-    try {
-      const res = await API.get("/auth/current-user");
-      if (res.data) {
-        return res?.data;
-      }
-    } catch (error) {
-      console.log(error);
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
-      }
-    }
-  }
-);
+  useEffect(() => {
+    getBloodRecords();
+  }, []);
+  return (
+    <Layout>
+      {error && <span>{alert(error)}</span>}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="container">
+            <h4
+              className="ms-4"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              style={{ cursor: "pointer" }}
+            >
+              <i className="fa-solid fa-plus text-success py-4"></i>
+              Add Inventory
+            </h4>
+            <table className="table ">
+              <thead>
+                <tr>
+                  <th scope="col">Blood Group</th>
+                  <th scope="col">Inventory Type</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Donar Email</th>
+                  <th scope="col">TIme & Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.map((record) => (
+                  <tr key={record._id}>
+                    <td>{record.bloodGroup}</td>
+                    <td>{record.inventoryType}</td>
+                    <td>{record.quantity} (ML)</td>
+                    <td>{record.donarEmail}</td>
+                    <td>
+                      {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <Modal />
+          </div>
+        </>
+      )}
+    </Layout>
+  );
+};
+
+export default HomePage;
