@@ -1,12 +1,25 @@
- const express = require('express');
-const authMiddleware = require('../middlewares/authMiddleware');
-const { createInventoryController, getInventoryController } = require('../controllers/inventoryController');
- const router = express.Router();
+const express = require("express");
+const authMiddelware = require("../middlewares/authMiddelware");
+const {
+  createInventoryController,
+  getInventoryController,
+  getDonarsController,
+  getHospitalController,
+} = require("../controllers/inventoryController");
 
- //routes
-//add inventory || post
-router.post('/create-inventory', authMiddleware, createInventoryController)
+const router = express.Router();
 
-//get all blood records
-router.get('/get-inventory', authMiddleware, getInventoryController  )
- module.exports = router;
+//routes
+// ADD INVENTORY || POST
+router.post("/create-inventory", authMiddelware, createInventoryController);
+
+//GET ALL BLOOD RECORDS
+router.get("/get-inventory", authMiddelware, getInventoryController);
+
+//GET DONAR RECORDS
+router.get("/get-donars", authMiddelware, getDonarsController);
+
+//GET HOSPITAL RECORDS
+router.get("/get-hospitals", authMiddelware, getHospitalController);
+
+module.exports = router;
