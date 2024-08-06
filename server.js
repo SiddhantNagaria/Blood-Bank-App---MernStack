@@ -6,8 +6,9 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 //dot config
 dotenv.config();
-//mongodb connection 
-connectDB() ;
+//mongodb connection
+connectDB();
+
 //rest object
 const app = express();
 
@@ -19,9 +20,10 @@ app.use(morgan("dev"));
 //routes
 // 1 test route
 app.use("/test", require("./routes/testRoutes"));
-app.use("/auth", require('./routes/authRoutes'));
-app.use('/inventory',require('./routes/inventoryRoutes'));
+app.use("/auth", require("./routes/authRoutes"));
+app.use("/inventory", require("./routes/inventoryRoutes"));
 app.use("/analytics", require("./routes/analyticsRoutes"));
+app.use("/admin", require("./routes/adminRoutes"));
 
 //port
 const PORT = process.env.PORT || 8080;
