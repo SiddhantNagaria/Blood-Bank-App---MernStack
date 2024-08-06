@@ -14,31 +14,22 @@ const AdminHome = () => {
           <h3>Manage Blood Bank App </h3>
           <hr />
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-            explicabo animi blanditiis incidunt dicta quia, quibusdam facere
-            corporis! Dolores, reprehenderit cum sed repellat laudantium
-            architecto natus est nostrum accusamus, odio aspernatur minima
-            fugiat quam molestiae nisi. Temporibus impedit dolorem quia.
-            Distinctio modi non excepturi illo odio voluptatum quae nostrum a
-            temporibus sequi! Explicabo, quasi consequatur ad qui quos labore
-            distinctio voluptates alias nostrum ab dicta aspernatur molestias
-            adipisci quibusdam error ipsa. Totam, tenetur dolores eaque tempora
-            officiis deserunt assumenda? Rerum nemo est nihil laudantium
-            necessitatibus. Possimus, voluptatem voluptates blanditiis quas
-            aspernatur, quam, quaerat minus maiores ipsam sint perferendis
-            dolor. Dignissimos voluptatem doloribus sint in quis omnis, atque
-            neque praesentium voluptatum suscipit. Quas esse, accusantium maxime
-            obcaecati iure officiis aperiam minus alias quod cum quos qui
-            voluptatibus, numquam, ad id dolore odit! Minima laudantium sunt,
-            explicabo nesciunt quos voluptatibus qui libero eligendi praesentium
-            debitis obcaecati similique assumenda nobis labore totam dolore
-            perferendis adipisci fugiat quibusdam tempore doloremque voluptatum
-            accusantium. Accusamus, incidunt sequi. Esse sunt officia fuga,
-            officiis saepe tempora repellat suscipit aliquid cupiditate
-            perferendis, asperiores architecto molestiae rem iste eaque
-            molestias reiciendis. Laborum modi asperiores, reprehenderit
-            assumenda numquam, vitae exercitationem illum nesciunt, dolorum
-            deleniti accusamus consequatur id. Necessitatibus dolore ad fugit?
+            The main aim of developing this system is to provide
+            blood to thepeople who are in need of blood. The numbers of persons
+            who are in need ofblood are increasing in large number day by day.
+            Using this system usercan search blood group available in the city
+            and he can also get contactnumber of the donor who has the same
+            blood group he needs. In order tohelp people who are in need of
+            blood. <br />
+            To guarantee sufficient blood availability to meet demand and
+            preserve lives, BD, therefore, plays a crucial role in healthcare
+            systems. A highly well-organized internet healthcare system is
+            needed in Arab nations, including our town. To isolate transmitted
+            pathogens and provide safe and sufficient blood transfusion services
+            to the public, an integrated blood adoption technique is necessary.
+            The primary element of the plan will be to collect blood from
+            willing donors, filter it for all communicable diseases, and reduce
+            transfusions.
           </p>
         </div>
       </div>
